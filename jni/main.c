@@ -84,7 +84,7 @@ void destroy_sensors(void)
   LOGI("[destroy_sensors] ASensorManager_destroyEventQueue returned %d", ret);
 }
 
-static PyObject *callme(PyObject *self, PyObject *args)
+static PyObject *grab_accel(PyObject *self, PyObject *args)
 {
 
   setup_sensors();
@@ -99,16 +99,16 @@ static PyObject *callme(PyObject *self, PyObject *args)
 }
 
 static PyMethodDef ExtensionMethods[] = {
-  {"callme", callme, METH_VARARGS,
-   "Call this function for a test."},
+  {"grab_accel", grab_accel, METH_VARARGS,
+   "Wait for an accelerometer sensor event and retrieve it's values."},
   {NULL, NULL, 0, NULL}
 };
 
-PyMODINIT_FUNC initmy_extension(void)
+PyMODINIT_FUNC initsensors(void)
 {
   
   LOGI("[initmy_extension] initializing...");
   LOGI("[initmy_extension] setting up ASensorManager");
   setup_manager();
-  (void) Py_InitModule("my_extension", ExtensionMethods);
+  (void) Py_InitModule("sensors", ExtensionMethods);
 }
