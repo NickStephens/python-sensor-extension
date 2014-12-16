@@ -100,7 +100,7 @@ static PyObject *grab_accel(PyObject *self, PyObject *args)
 
 static PyMethodDef ExtensionMethods[] = {
   {"grab_accel", grab_accel, METH_VARARGS,
-   "Wait for an accelerometer sensor event and retrieve it's values."},
+   "Wait for an accelerometer sensor event and retrieve its values."},
   {NULL, NULL, 0, NULL}
 };
 
