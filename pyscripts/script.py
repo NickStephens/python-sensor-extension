@@ -1,13 +1,12 @@
-import my_extension
+import sensors
 import time
-
-print "starting!"
 
 samples = []
 while True:
   t1 = time.time()
+  print "--samples:"
   for i in range(0, 10):
-    my_extension.callme()
+    print "\t", sensors.grab_accel()
   t2 = time.time()
 
   print 10/(t2 - t1), "samples a second"
