@@ -89,9 +89,10 @@ static PyObject *grab_accel(PyObject *self, PyObject *args)
 
   setup_sensors();
   LOGI("[callme] calling ALooper_pollOnce");
-  /* blocks until a new event arrived */
+  /* blocks until a new event arrives */
   ALooper_pollOnce(-1, NULL, NULL, NULL);
 
+  /* not sure why this has to be done. if we don't destroy the sensor eventqueue on every call, we'll block indefinitely on the next call. */
   destroy_sensors();
   return Py_BuildValue("(f,f,f)", event.acceleration.x, event.acceleration.y,
     event.acceleration.z);
